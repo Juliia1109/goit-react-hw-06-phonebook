@@ -1,7 +1,17 @@
- import PropTypes from 'prop-types';
+//  import PropTypes from 'prop-types';
  import css from './Filter.module.css'
+ import { useDispatch, useSelector } from 'react-redux';
+ import { contactFilter } from 'redux/contactSlice';
+ import { getFilter } from 'redux/contactSelectors';
 
-export default function Filter({ value, onChange }) {
+export default function Filter({ addFilter}) {
+  const dispatch = useDispatch();
+  const filter = useSelector(getFilter);
+
+const onChange = e => {
+  dispatch(contactFilter(e.currentTarget.value));
+};
+
   return (
     <div className={css.container}>
       <p className={css.text}>  
@@ -9,7 +19,7 @@ export default function Filter({ value, onChange }) {
       </p>  
       <input 
       type="text"  
-      value={value} 
+      value={filter} 
       onChange={onChange}
       className={css.input} />
     </div>
@@ -17,7 +27,7 @@ export default function Filter({ value, onChange }) {
 }
 
 
-  Filter.propTypes = {
-    value: PropTypes.string,
-    onChange: PropTypes.func,
-  };
+  // Filter.propTypes = {
+  //   value: PropTypes.string,
+  //   onChange: PropTypes.func,
+  // };
