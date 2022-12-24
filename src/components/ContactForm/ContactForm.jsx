@@ -8,7 +8,7 @@ import { nanoid } from 'nanoid';
 
 
 
-export default function ContactForm ( ) {
+export default function ContactForm() {
     const dispatch = useDispatch();
     const contacts = useSelector(getContacts);
     const [name, setName] = useState('');
